@@ -1,0 +1,46 @@
+<!-- templates/alerts.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-12 my-4">
+      <h2>Daily Weather Summary</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>City</th>
+            <th>Avg Temp</th>
+            <th>Max Temp</th>
+            <th>Min Temp</th>
+            <th>Dominant Condition</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for summary in daily_summaries %}
+            <tr>
+              <td>{{ summary.city }}</td>
+              <td>{{ summary.avg_temp }}°C</td>
+              <td>{{ summary.max_temp }}°C</td>
+              <td>{{ summary.min_temp }}°C</td>
+              <td>{{ summary.dominant_weather }}</td>  <!-- Corrected variable name -->
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="5" class="text-center">No weather data available at this time.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <h3>Weather Alerts</h3>
+      <ul>
+        {% for alert in alerts %}
+          <li>{{ alert.city }} - {{ alert.message }} at {{ alert.timestamp }}</li>
+        {% empty %}
+          <div class="alert alert-info" role="alert">No alerts at this time.</div>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+{% endblock %}
+

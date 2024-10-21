@@ -1,0 +1,26 @@
+<!-- templates/index.html -->
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+    <div class="col-12 text-center my-4">
+      <h1>Real-Time Weather Monitoring</h1>
+      <p>Get real-time updates for major Indian metros.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    {% for city in weather_data %}
+    <div class="col-md-4 my-3">
+      <div class="card shadow-lg">
+        <div class="card-body">
+          <h5 class="card-title">{{ city.name }}</h5>
+          <p class="card-text">Current Temp: {{ city.temp }}°C</p>
+          <p class="card-text">Feels Like: {{ city.feels_like }}°C</p>
+          <p class="card-text">Weather: {{ city.main }}</p>
+          <p class="card-text"><small class="text-muted">Updated: {{ city.timestamp }}</small></p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}

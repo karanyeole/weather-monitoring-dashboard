@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+    <div class="col-12 my-4">
+      <h2>Daily Weather Summary</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">City</th>
+            <th scope="col">Average Temp (°C)</th>
+            <th scope="col">Max Temp (°C)</th>
+            <th scope="col">Min Temp (°C)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for city, avg_temp, max_temp, min_temp in city_weather_data %}
+            <tr>
+              <td>{{ city }}</td>
+              <td>{{ avg_temp }}°C</td>
+              <td>{{ max_temp }}°C</td>
+              <td>{{ min_temp }}°C</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div id="weather-chart"></div>
+    </div>
+  </div>
+
+  <script>
+    var city_names = JSON.parse(document.getElementById('city-names').textContent);
+    var avg_temps = JSON.parse(document.getElementById('avg-temps').textContent);
+    var max_temps = JSON.parse(document.getElementById('max-temps').textContent);
+    var min_temps = JSON.parse(document.getElementById('min-temps').textContent);
+
+    var trace1 = {
+      x: city_names,
+      y: avg_temps,
+      name: 'Average Temp',
+      type: 'bar',
+      marker: {color: 'blue'}
+    };
+
+    var trace2 = {
+      x: city_names,
+      y: max_temps,
+      name: 'Max Temp',
+      type: 'bar',
+      marker: {color: 'red'}
+    };
+
+    var trace3 = {
+      x: city_names,
+      y: min_temps,
+      name: 'Min Temp',
+      type: 'bar',
+      marker: {color: 'green'}
+    };
+
+    var data = [trace1, trace2, trace3];
+
+    var layout = {
+      barmode: 'group',
+      title: 'Daily Weather Summary',
+      xaxis: {title: 'City'},
+      yaxis: {title: 'Temperature (°C)'}
+    };
+
+    Plotly.newPlot('weather-chart', data, layout);
+  </script>
+
+  <!-- Pass the data as JSON -->
+  <script type="application/json" id="city-names">{{ city_names|safe }}</script>
+  <script type="application/json" id="avg-temps">{{ avg_temps|safe }}</script>
+  <script type="application/json" id="max-temps">{{ max_temps|safe }}</script>
+  <script type="application/json" id="min-temps">{{ min_temps|safe }}</script>
+{% endblock %}

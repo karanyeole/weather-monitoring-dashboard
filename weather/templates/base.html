@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Monitoring Dashboard</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Google Fonts for better typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link href="/static/css/styles.css" rel="stylesheet">
+
+  <!-- Plotly for charts -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <!-- Inline Custom Styling -->
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f4f7;
+    }
+
+    .navbar {
+      background-color: #007bff;
+      border-bottom: 2px solid #0056b3;
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: #fff !important;
+    }
+
+    .nav-link {
+      color: #f8f9fa !important;
+      font-weight: 500;
+    }
+
+    .nav-link:hover {
+      color: #e2e6ea !important;
+      background-color: #0056b3;
+      border-radius: 5px;
+    }
+
+    .container {
+      margin-top: 2rem;
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2 {
+      font-weight: 600;
+      color: #007bff;
+    }
+
+    .card {
+      border: none;
+      border-radius: 12px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px);
+    }
+
+    .card-title {
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: #343a40;
+    }
+
+    .card-text {
+      font-weight: 400;
+      color: #6c757d;
+    }
+
+    .navbar-brand, .card-title {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .weather-summary-table th, .weather-summary-table td {
+      padding: 1rem;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    .weather-summary-table th {
+      background-color: #007bff;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .weather-summary-table td {
+      background-color: #f8f9fa;
+    }
+    
+    /* Add hover effect for the table rows */
+    .weather-summary-table tr:hover {
+      background-color: #dce3eb;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="/">Weather Updates</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/summary">Daily Summary</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/alerts">Alerts</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+  <div class="container">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  <!-- JavaScript dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Link to custom JS -->
+  <script src="/static/js/scripts.js"></script>
+  
+</body>
+</html>
